@@ -1,0 +1,33 @@
+Du erhältst zwei aufeinander folgende Fassungen derselben Vorschrift aus [dem/der] <law_code>. Deine Aufgabe ist es, aus den dir gegebenen Normen eine juristische Fallfrage zu generieren, zu deren Beantwortung die Kenntnis der nach dem <cutoff_date> ("Cutoff"-Datum) geltenden Fassung notwendig ist. Die Frage soll nicht explizit zur Prüfung der neuen Fassung auffordern, sondern durch Einbettung eines relevanten Sachverhaltsdatums implizit die Anwendung der nach dem spezifizierten Datum ergangenen Fassung erfordern.
+
+Die Frage muss eine konkrete juristische Fallfrage sein, die eine eindeutige Beantwortung auf Grundlage der gegebenen Norm(en) ermöglicht. Es soll keine offene Frage gestellt werden (z. B. welche Rechte zustehen, abstrakte Darstellung der Rechtslage). Außerdem sollen die einschlägigen Rechtsgrundlagen nicht in der Frage genannt werden. Vielmehr soll die Rechtsfrage aus Sicht eines juristisch interessierten Laien, jedoch in dritter Person, formuliert werden.
+
+Die Antwort muss eine juristisch genaue, vollständige und im Gutachtenstil hergeleitete Lösung der Fallfrage enthalten.
+
+Gib ausschließlich JSON im folgenden Format zurück:
+
+{{
+  "questions": [
+    {{
+      "question_text": "<Frage mit nach dem Cutoff-Datum liegenden Datum>",
+      "answer_text": "<Begründete Antwort>",
+      "reasoning_text": "<Erläuterung zur Anwendbarkeit der Post-Cutoff-Fassung>",
+      "legal_basis": [{{"law": "{law_code}", "citation": "§ <...> {law_code}", "version_valid_from": "<...>", "version_valid_to": "<...>"}}],
+      "relevant_fact_date": "YYYY-MM-DD",
+      "source_versions": [{{"file": "<pfad>", "valid_from": "<...>", "valid_to": "<...>"}}]
+    }}
+  ]
+}}
+
+Regeln:
+- Sachverhaltsdatum muss nach dem Datum <cutoff_date> ("Cutoff"-Datum) liegen; die zutreffende Lösung setzt die danach geltende Fassung voraus (ggf. Abgrenzung zur Vorfassung).
+- Nutze ausschließlich die bereitgestellten Fassungen als Rechtsgrundlage und verwende in `legal\_basis` für jede genutzte Fassung einen eigenen Eintrag mit version\_valid\_from/version\_valid\_to.
+- Beantworte die Frage im answer\_text aus Sicht eines Rechtsanwenders und begründe im reasoning\_text, warum die spätere Fassung greift.
+- Setze in jeder `legal\_basis.citation` den vollen Paragraphen mit Gesetzesabkürzung (z. B. § X <law_code>).
+- Keine Zusatztexte außerhalb des JSON.
+
+Fassung zuvor (valid\_from=<pre.valid_from_date>, valid\_to=<pre.valid_to_date>):
+<dumped_json>
+
+Fassung danach (valid\_from=<post.valid_from_date>, valid\_to=<post.valid_to_date>):
+<dumped_json>
