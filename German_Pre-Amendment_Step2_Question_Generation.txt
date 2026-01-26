@@ -1,0 +1,38 @@
+Du erhältst mehrere, aufeinander folgende Fassungen derselben Vorschrift aus [dem/der] <law_code>.
+
+Deine Aufgabe ist es, aus den dir gegebenen Normen eine juristische Fallfrage zu generieren, zu deren Beantwortung die Kenntnis der nicht(!) aktuellen, sondern der zuvor geltenden Rechtslage notwendig ist. Die Frage soll nicht explizit zur Prüfung der alten Fassung einer Rechtsvorschrift auffordern (z. B. „Wie war die Rechtslage zum Zeitpunkt X?"), sondern implizit durch Einbettung eines relevanten Sachverhaltsdatums die Prüfung einer alten Gesetzesfassung erfordern. 
+
+Die Frage muss eine konkrete juristische Fallfrage sein, die eine eindeutige Beantwortung auf Grundlage der gegebenen Norm(en) ermöglicht. Es soll keine offene Frage gestellt werden (z. B. welche Rechte zustehen, abstrakte Darstellung der Rechtslage). Außerdem sollen die einschlägigen Rechtsgrundlagen nicht in der Frage genannt werden. Vielmehr soll die Rechtsfrage aus Sicht eines juristisch interessierten Laien, jedoch in dritter Person, formuliert werden.
+
+Wichtig:
+- Keine Fallfrage, für die die für die Beantwortung maßgebliche Norm in der Folgefassung ersatzlos entfallen ist oder nur in eine andere Vorschrift verschoben wurde.
+- Keine Fallfrage, für die der für die Beantwortung maßgebliche Regelungsgegenstand ein vollständig neuer ist.
+- Keine Fallfrage, deren Antwort trotz Fassungswechsels bei typischer Anwendung dieselbe Rechtsfolge ergeben würde (z. B. identische Voraussetzungen und Ergebnisse).
+
+Die Antwort muss eine juristisch genaue, vollständige und im Gutachtenstil hergeleitete Lösung der Fallfrage enthalten.
+
+Gib ausschließlich JSON im folgenden Format zurück:
+
+{{
+  "questions": [
+    {{
+      "question_text": "<Frage mit Sachverhaltsdatum>",
+      "answer_text": "<Begründete Antwort>",
+      "reasoning_text": "<Erläuterung zur Anwendbarkeit der jeweiligen Fassung>",
+      "legal_basis": [{{"law": "{law_code}", "citation": "§ <...> {law_code}", "version_valid_from": "<...>", "version_valid_to": "<...>"}}],
+      "relevant_fact_date": "YYYY-MM-DD",
+      "source_versions": [{{"file": "<pfad>", "valid_from": "<...>", "valid_to": "<...>"}}]
+    }}
+  ]
+}}
+
+Regeln:
+- Fokussiere dich auf genau einen Fassungswechsel: Die Frage darf nur lösbar sein, wenn das Sachverhaltsdatum korrekt der alten oder neuen Fassung zugeordnet wird.
+- Nutze ausschließlich die bereitgestellten Fassungen als Rechtsgrundlage und verwende in `legal\_basis` für jede genutzte Fassung einen eigenen Eintrag mit version\_valid\_from/version\_valid\_to.
+- Beantworte die Frage im answer\_text aus Sicht eines Rechtsanwenders. Füge hier keine Meta-Diskussionen an.
+- Begründe im reasoning\_text, warum die gewählte Fassung greift (alte vs. neue Fassung).
+- Setze in jeder `legal\_basis.citation` den vollen Paragraphen mit Gesetzesabkürzung (z. B. § X \texttt{\textless law\_code\textgreater}).
+- Keine Zusatztexte außerhalb des JSON.
+
+Fassungen:
+<versions_text>
