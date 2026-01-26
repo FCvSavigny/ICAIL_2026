@@ -1,0 +1,33 @@
+You will receive two successive versions of the same provision from the <law_code>. Your task is to generate a legal case question from the given norms, the answer to which requires knowledge of the version applicable after the <cutoff_date> ("cutoff" date). The question should not explicitly call for examination of the new version, but rather implicitly require application of the version issued after the specified date through embedding a relevant fact date.
+
+The question must be a concrete legal case question that allows a clear answer based on the given norm(s). No open question should be posed (e.g., what rights exist, abstract presentation of the legal situation). Furthermore, the applicable legal bases should not be mentioned in the question. Rather, the legal question should be formulated from the perspective of a legally interested layperson, but in third person.
+
+The answer must contain a legally precise, complete solution to the case question derived in opinion style.
+
+Return exclusively JSON in the following format:
+
+{{
+  "questions": [
+    {{
+      "question_text": "<Question with date after the cutoff date>",
+      "answer_text": "<Justified answer>",
+      "reasoning_text": "<Explanation of the applicability of the post-cutoff version>",
+      "legal_basis": [{{"law": "{law_code}", "citation": "§ <...> {law_code}", "version_valid_from": "<...>", "version_valid_to": "<...>"}}],
+      "relevant_fact_date": "YYYY-MM-DD",
+      "source_versions": [{{"file": "<path>", "valid_from": "<...>", "valid_to": "<...>"}}]
+    }}
+  ]
+}}
+
+Rules:\\
+- Fact date must be after the date <cutoff_date> ("cutoff" date); the correct solution requires the version applicable thereafter (if necessary, distinction from the previous version).
+- Use exclusively the provided versions as legal basis and use in `legal\_basis` a separate entry for each version used with version\_valid\_from/version\_valid\_to.
+- Answer the question in answer\_text from the perspective of a legal practitioner and justify in reasoning\_text why the later version applies.
+- Set in each `legal\_basis.citation` the full paragraph with law abbreviation (e.g., § X <law_code>).
+- No additional texts outside the JSON.
+
+Version before (valid\_from=<pre.valid_from_date>, valid\_to=<pre.valid_to_date>):
+<dumped_json>
+
+Version after (valid\_from=<post.valid_from_date>, valid\_to=<post.valid_to_date>):
+<dumped_json>
