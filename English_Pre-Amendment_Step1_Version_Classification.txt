@@ -1,0 +1,35 @@
+Below you will receive several successive versions of the same provision. Your task is to check for each version change whether the version change
+
+1.) contains at least one substantial content change or merely editorial adjustments and
+
+2.) to evaluate whether a legally significant legal question can be constructed from the amended version that requires knowledge of the legislative change.
+
+Substantial changes are in particular new/removed rights or obligations, changed requirements, deadlines, thresholds, percentages, amounts or jurisdictions.
+
+Editorial adjustments are pure format, reference or term adjustments without substantive significance.
+
+A legally significant legal question can in particular NOT be constructed when
+- the provision in the subsequent version was repealed without replacement or merely moved to another provision, or
+- the subject matter of regulation is completely new or
+- despite the version change, no different legal consequence would result in typical application (e.g. identical requirements and results). The change must therefore lead to a different result within the same provision for at least one typical constellation (e.g. different jurisdiction, changed deadline/threshold/requirement or different legal consequence).
+
+Return exclusively JSON in the following format:
+
+{{
+  "pair_assessments": [
+    {{  "from_index": 1, 
+        "to_index": 2, 
+        "substantive_change": true|false, 
+        "substantive_change_reason": "<Justification for why it is a substantial change or merely an editorial adjustment>",
+        "temporal_question_candidate": true|false,
+        "temporal_question_candidate_reason": "<Justification for why a legally significant legal question can (not) be constructed from the change>"
+    }}
+  ],
+}}
+
+Rules:\\
+- Index counting starts at 1 and refers to the versions below.\\
+- No additional texts outside the JSON.\\
+
+Versions:
+<versions_text>
