@@ -1,0 +1,23 @@
+In the following you will receive the table of contents for the <law_code>. A norm from the <law_code> will be given to you: <randomized_provision>. Your task is to select <n> additional norms for this given norm, so that these <n+1> norms are overall thematically connected insofar as a legal case question can be generated from them, for which knowledge of each of these norms is necessary. As an additional condition, each of these norms must have at least one old version. You can freely choose the topic as long as these conditions are met.
+
+Return exclusively JSON in the following format:
+
+{{
+  "selection": [
+    {{"paragraph_id": "s433", "citation": "§ 433 {law_code}", "title": "<Heading, if visible>", "reason": "<brief>"}},
+    {{...}}
+  ],
+  "notes": "<optional>"
+}}
+
+Rules:
+- At least one paragraph must be present in the following list of available paragraphs (i.e., at least two versions are available in the dataset).
+- paragraph\_id corresponds to the paragraph from the list. For example, if § 404 or § 740a is available, the paragraph\_id is "s404" or "s740a".
+- The selection must be thematically coherent and include the given norm \texttt{\textless randomized\_statute\textgreater}.
+- Consider exclusively the given version of the table of contents.
+- No additional texts outside the JSON.
+
+Available paragraphs with at least two versions: <allowed_preview>.
+
+Table of contents for <law_code>:
+<toc_text>.
