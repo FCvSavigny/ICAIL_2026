@@ -1,0 +1,35 @@
+Im Folgenden erhältst du mehrere, aufeinander folgende Fassungen derselben Vorschrift. Deine Aufgabe ist, für jeden Fassungswechsel zu prüfen, ob der Fassungswechsel
+
+1.) mindestens eine substanzielle inhaltliche Änderung oder bloße redaktionelle Anpassungen enthält und
+
+2.) zu evaluieren, ob sich aus der geänderten Fassung eine inhaltlich bedeutsame Rechtsfrage konstruieren lässt, welche die Kenntnis der Gesetzesänderung erfordert.
+
+Substanzielle Änderungen sind insbesondere neue/entfernte Rechte oder Pflichten, geänderte Voraussetzungen, Fristen, Schwellen, Prozentsätze, Beträge oder Zuständigkeiten.
+
+Redaktionelle Anpassungen sind reine Format-, Verweis- oder Begriffs-Anpassungen ohne sachliche Bedeutung.
+
+Eine inhaltlich bedeutsame Rechtsfrage lässt sich insbesondere dann NICHT konstruieren, wenn
+- die Vorschrift in der Folgefassung ersatzlos aufgehoben oder lediglich in eine andere Vorschrift verschoben wurde, oder
+- der Regelungsgegenstand ein vollständig neuer ist oder
+- sich trotz Fassungswechsels bei typischer Anwendung keine unterschiedliche Rechtsfolge ergeben würde (z.B. identische Voraussetzungen und Ergebnisse). Die Änderung muss also innerhalb derselben Vorschrift für mindestens eine typische Konstellation zu einem anderen Ergebnis führen (z.B. andere Zuständigkeit, geänderte Frist/Schwelle/Voraussetzung oder andere Rechtsfolge).
+
+Gib ausschließlich JSON im folgenden Format zurück:
+
+{{
+  "pair_assessments": [
+    {{  "from_index": 1, 
+        "to_index": 2, 
+        "substantive_change": true|false, 
+        "substantive_change_reason": "<Begründung, warum es sich um eine substanzielle Änderung bzw. bloße redaktionelle Anpassung handelt>",
+        "temporal_question_candidate": true|false,
+        "temporal_question_candidate_reason": "<Begründung, warum sich aus der Änderung eine inhaltlich bedeutsame Rechtsfrage (nicht) konstruieren lässt>"
+    }}
+  ],
+}}
+
+Regeln:
+- Die Indexzählung startet bei 1 und bezieht sich auf die Fassungen unten.
+- Keine Zusatztexte außerhalb des JSON.
+
+Fassungen:
+<versions_text>
