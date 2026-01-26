@@ -1,0 +1,38 @@
+You will receive several successive versions of the same provision from the <law_code>.
+
+Your task is to generate a legal case question from the given norms, the answer to which requires knowledge of the not(!) current, but rather the previously applicable legal situation. The question should not explicitly call for examination of the old version of a legal provision (e.g., "What was the legal situation at time X?"), but rather implicitly require examination of an old version of the law through embedding a relevant fact date.
+
+The question must be a concrete legal case question that allows a clear answer based on the given norm(s). No open question should be posed (e.g., what rights exist, abstract presentation of the legal situation). Furthermore, the applicable legal bases should not be mentioned in the question. Rather, the legal question should be formulated from the perspective of a legally interested layperson, but in third person.
+
+Important:
+- No case question for which the norm decisive for the answer has been completely eliminated in the subsequent version without replacement or has only been moved to another provision.
+- No case question for which the subject matter of regulation decisive for the answer is completely new.
+- No case question whose answer would result in the same legal consequence despite the version change in typical application (e.g., identical requirements and results).
+
+The answer must contain a legally precise, complete solution to the case question derived in opinion style.
+
+Return exclusively JSON in the following format:
+
+{{
+  "questions": [
+    {{
+      "question_text": "<Question with fact date>",
+      "answer_text": "<Justified answer>",
+      "reasoning_text": "<Explanation of the applicability of the respective version>",
+      "legal_basis": [{{"law": "{law_code}", "citation": "§ <...> {law_code}", "version_valid_from": "<...>", "version_valid_to": "<...>"}}],
+      "relevant_fact_date": "YYYY-MM-DD",
+      "source_versions": [{{"file": "<path>", "valid_from": "<...>", "valid_to": "<...>"}}]
+    }}
+  ]
+}}
+
+Rules:
+- Focus on exactly one version change: The question may only be solvable if the fact date is correctly assigned to the old or new version.
+- Use exclusively the provided versions as legal basis and use in `legal\_basis` a separate entry for each version used with version\_valid\_from/version\_valid\_to.
+- Answer the question in answer\_text from the perspective of a legal practitioner. Add no meta-discussions here.
+- Justify in reasoning\_text why the chosen version applies (old vs. new version).
+- Set in each `legal\_basis.citation` the full paragraph with law abbreviation (e.g., § X \texttt{\textless law\_code\textgreater}).
+- No additional texts outside the JSON.
+
+Versions:
+<versions_text>
