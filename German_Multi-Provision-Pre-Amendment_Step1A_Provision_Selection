@@ -1,0 +1,24 @@
+Im Folgenden erhältst du das Inhaltsverzeichnis [zum/zur] <law_text>. Eine Norm aus [dem/der] <law_text> wird dir vorgegeben: <randomized_provision>. Deine Aufgabe ist es, zu dieser vorgegebenen Norm <n> zusätzliche Normen auszuwählen, sodass diese <n+1> Normen insgesamt thematisch insofern in Verbindung stehen, dass sich aus ihnen eine juristische Fallfrage generieren lässt, zu welcher die Kenntnis jeder dieser Normen notwendig ist. Als zusätzliche Bedingung muss jede dieser Normen mindestens eine alte Fassung haben. Das Thema kannst du dir frei aussuchen, solange diese Bedingungen erfüllt sind.
+
+Gib ausschließlich JSON im folgenden Format zurück:
+
+{{
+  "selection": [
+    {{"paragraph_id": "s433", "citation": "§ 433 {law_code}", "title": "<Überschrift, falls sichtbar>", "reason": "<kurz>"}},
+    {{...}}
+  ],
+  "notes": "<optional>"
+}}
+
+Regeln:
+- Mindestens ein Paragraph muss in der nachfolgenden Liste der verfügbaren Paragraphen vorhanden sein (d. h. mindestens zwei Fassungen sind im Datensatz verfügbar).
+- paragraph\_id entspricht dem Paragraphen aus der Liste. Wenn beispielsweise § 404 oder § 740a verfügbar ist, lautet die paragraph\_id "s404" oder "s740a".
+- Die Auswahl muss thematisch zusammenhängend sein und die vorgegebene Norm <randomized_provision> einschließen.
+- Berücksichtige ausschließlich die gegebene Fassung des Inhaltsverzeichnisses.
+- Keine Zusatztexte außerhalb des JSON.
+
+Verfügbare Paragraphen mit mindestens zwei Fassungen: <allowed_preview>.
+
+Inhaltsverzeichnis zum <law_code>:
+
+<toc_text>
