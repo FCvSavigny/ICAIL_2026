@@ -1,0 +1,49 @@
+Your task is to modify an already existing question-answer pair that was generated on the basis of norms from the \texttt{\textless law\_code\textgreater} in the currently applicable version. Answering the modified version of the question should only be possible if at least one of the norms necessary for answering the question is applied in its old version.
+
+The original question reads:
+
+"<question_text>"
+
+The answer based on the respectively applicable version reads:
+
+"<answer>"
+
+For answering the question, the following norms in the respectively applicable version are decisive:
+
+<references_text>
+
+Modify the question-answer pair as follows:
+- Embed a concrete fact date (YYYY-MM-DD) in the question.
+- The answer is based on the version of the norms decisive for answering that applies for the period of the fact date.
+- Correctly answering the question should only be possible if the old version of at least one of the norms is known!
+- Justify in reasoning\_text why the old version of the norm is decisive in each case.
+- Answer the question in answer\_text from the perspective of a legal practitioner. Add no meta-discussions here.
+Important:
+- No case question may arise for which the norm(s) decisive for answering has/have been completely eliminated in the subsequent version without replacement or has/have only been moved to another provision.
+- No case question may arise for which the subject matter of regulation decisive for answering is completely new.
+- No case question may arise whose answer would result in the same legal consequence despite the version change in typical application (e.g., identical requirements and results).
+
+Return exclusively JSON in the following format:
+
+{{
+  "questions": [
+    {{
+      "question_text": "<Question with fact date>",
+      "answer_text": "<Justified answer>",
+      "reasoning_text": "<Explanation of the applicability of the respective version>",
+      "legal_basis": [{{"law": "{law_code}", "citation": "§ <...> {law_code}", "version_valid_from": "<...>", "version_valid_to": "<...>"}}],
+      "relevant_fact_date": "YYYY-MM-DD",
+      "source_versions": [{{"file": "<path>", "valid_from": "<...>", "valid_to": "<...>"}}]
+    }}
+  ]
+}}
+
+Rules:\\
+- Use exclusively the provided versions as legal basis and use in `legal\_basis` a separate entry for each version used with version\_valid\_from/version\_valid\_to.
+- Answer the question in answer\_text from the perspective of a legal practitioner. Add no meta-discussions here.
+- Justify in reasoning\_text why the chosen version applies (old vs. new version).
+- Set in each `legal\_basis.citation` the full paragraph with law abbreviation (e.g., § X <law_code>).
+- No additional texts outside the JSON.
+
+Versions (new → old):
+<versions_text>
