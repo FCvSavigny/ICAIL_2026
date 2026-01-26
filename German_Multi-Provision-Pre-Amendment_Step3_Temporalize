@@ -1,0 +1,51 @@
+Deine Aufgabe ist es, ein bereits bestehendes Frage-Antwort-Paar, das auf Grundlage von Normen aus [dem/der] <law_code> in der derzeit geltenden Fassung generiert wurde, zu modifizieren. Die Beantwortung der modifizierten Fassung der Frage soll nur möglich sein, wenn mindestens eine der zur Beantwortung der Frage notwendigen Normen in ihrer alten Fassung angewendet wird.
+
+Die Ausgangsfrage lautet:
+
+"<question_text>"
+
+Die Antwort auf Grundlage der jeweils geltenden Fassung lautet:
+
+"<answer>"
+
+Zur Beantwortung der Frage sind folgende Normen in der jeweils geltenden Fassung maßgeblich:
+
+<references_text>
+
+Modifiziere das Frage-Antwort-Paar wie folgt:
+- Baue ein konkretes Sachverhaltsdatum (YYYY-MM-DD) in die Frage ein.
+- Die Antwort stützt sich auf die Fassung der zur Beantwortung maßgeblichen Normen, die für den Zeitraum des Sachverhaltsdatums gilt.
+- Die zutreffende Beantwortung der Frage soll nur möglich sein, wenn die alte Fassung mindestens einer der Normen bekannt ist!
+- Begründe im reasoning\_text, warum jeweils die alte Fassung der Norm maßgeblich ist.
+- Beantworte die Frage im answer\_text aus Sicht eines Rechtsanwenders. Füge hier keine Meta-Diskussionen an.
+
+Wichtig:
+- Es darf keine Fallfrage entstehen, für die die für die Beantwortung maßgebliche Norm(en) in der Folgefassung ersatzlos entfallen ist/sind oder nur in eine andere Vorschrift verschoben wurden.
+- Es darf keine Fallfrage entstehen, für die der für die Beantwortung maßgebliche Regelungsgegenstand ein vollständig neuer ist.
+- Es darf keine Fallfrage entstehen, deren Antwort trotz Fassungswechsels bei typischer Anwendung dieselbe Rechtsfolge ergeben würde (z. B. identische Voraussetzungen und Ergebnisse).
+
+Gib ausschließlich JSON im folgenden Format zurück:
+
+{{
+  "questions": [
+    {{
+      "question_text": "<Frage mit Sachverhaltsdatum>",
+      "answer_text": "<Begründete Antwort>",
+      "reasoning_text": "<Erläuterung zur Anwendbarkeit der jeweiligen Fassung>",
+      "legal_basis": [{{"law": "{law_code}", "citation": "§ <...> {law_code}", "version_valid_from": "<...>", "version_valid_to": "<...>"}}],
+      "relevant_fact_date": "YYYY-MM-DD",
+      "source_versions": [{{"file": "<pfad>", "valid_from": "<...>", "valid_to": "<...>"}}]
+    }}
+  ]
+}}
+
+Regeln:
+- Nutze ausschließlich die bereitgestellten Fassungen als Rechtsgrundlage und verwende in `legal\_basis` für jede genutzte Fassung einen eigenen Eintrag mit version\_valid\_from/version\_valid\_to.
+- Beantworte die Frage im answer\_text aus Sicht eines Rechtsanwenders. Füge hier keine Meta-Diskussionen an.
+- Begründe im reasoning\_text, warum die gewählte Fassung greift (alte vs. neue Fassung).
+- Setze in jede `legal\_basis.citation` den vollen Paragraphen mit Gesetzesabkürzung (z. B. § X <law_code>).
+- Keine Zusatztexte außerhalb des JSON.
+
+
+Fassungen (neu → alt):
+<versions_text>
