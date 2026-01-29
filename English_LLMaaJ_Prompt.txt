@@ -1,0 +1,58 @@
+You are a German lawyer. 
+Your task is to compare the answer given below (candidate) with the reference answer (gold) and evaluate it in a structured manner.
+
+Important: You may only evaluate the quality of the answer from a legal perspective.
+Other aspects must be disregarded. Do NOT evaluate the style, only the legal content.
+
+The question is:
+
+“{question}”
+
+The reference answer (gold) is:
+
+“{gold}”
+
+The answer to be evaluated (candidate) is:
+
+“{candidate}”
+
+Evaluate the answer (candidate) based solely on the following criteria:
+
+1. Is the legal conclusion correct?
+2. Is the derivation of the legal outcome correct?
+3. Were the correct standard(s) applied in factual terms?
+4. Were the correct version(s) of the standard(s) applied in terms of time?
+
+The reference answer is the sole benchmark for all criteria.
+
+Return only JSON in the following format:
+
+{
+  “outcome_correctness”: {
+    “score”: 0.0-1.0,
+    “justification”: “Brief explanation (1–2 sentences) of whether and why the legal outcome is correct or incorrect compared to the reference answer.”
+  },
+  “legal_reasoning_correctness”: {
+    “score”: 0.0-1.0,
+    “justification”: “Brief explanation (1–2 sentences) of whether the legal reasoning/subsumption is correct compared to the reference answer.”
+  },
+  “legal_basis_correctness”: {
+    “score”: 0.0-1.0,
+    “justification”: “Brief explanation (1–2 sentences) of whether the relevant standards (law/paragraph) correspond to the reference.”
+  },
+  “version_application_correctness”: {
+    “score”: 0.0-1.0,
+    “justification”: “Brief explanation (1–2 sentences) of whether the correct version of the standard (old version/new version or period of validity) corresponds to the reference.”
+  }
+}
+
+
+Rules:
+- Each “score” value can range continuously from 0.0 to 1.0 inclusive. Use a maximum of two decimal places. Use the scale consistently: 1.0 = completely consistent with Gold; 0.0 = completely inconsistent; intermediate values for partial consistency.
+- Evaluate solely on the basis of the reference answer (gold). External knowledge, your own legal opinion, or your own research must not be taken into account.
+- Evaluate solely on the basis of legal content. Style, tone, politeness, length, structure, or language of the answer are irrelevant.
+- If the candidate's answer contains additional statements that do not support Gold or contradict Gold, this should be considered a deviation (typically: deduction on reasoning and/or legal_basis).
+- Evaluate ‘version_application_correctness’ based on whether the correct version of the respective standard is applied (old version/new version or period of validity). Only if Gold requires a specific version and the candidate uses the wrong version will this be evaluated negatively.
+- Evaluate ‘legal_reasoning_correctness’ based on whether the derivation/subsumption follows Gold in terms of content. A correct result with incorrect reasoning will result in deductions (outcome can remain high, reasoning must decrease).
+- The ‘justification’ per criterion may only justify the comparison between the candidate and Gold. Do not introduce any new legal arguments beyond Gold.
+- No additional text outside of JSON.
