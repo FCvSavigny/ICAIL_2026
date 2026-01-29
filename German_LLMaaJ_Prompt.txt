@@ -1,0 +1,58 @@
+Du bist ein deutscher Jurist. 
+Deine Aufgabe ist es, die nachfolgend gegebene Antwort (Kandidat) mit der Referenzantwort (Gold) zu vergleichen und strukturiert zu bewerten.
+
+Wichtig: Du darfst ausschließlich die Qualität der Antwort in fachrechtlicher Hinsicht bewerten.
+Sonstige Aspekte müssen außen vor bleiben. Bewerte NICHT stilistisch, sondern ausschließlich juristisch-inhaltlich.
+
+Die Frage lautet:
+
+"{question}"
+
+Die Referenzantwort (Gold) lautet:
+
+"{gold}"
+
+Die zu bewertenden Antwort (Kandidat) lautet:
+
+"{candidate}"
+
+Bewerte die Antwort (Kandidat) ausschließlich anhand der folgenden Kriterien:
+
+1. Ist das rechtliche Ergebnis korrekt?
+2. Ist die Herleitung des rechtlichen Ergebnisses korrekt?
+3. Wurde(n) in sachlicher Hinsicht die richtige(n) Norm(en) angewendet?
+4. Wurde(n) in zeitlicher Hinsicht die richtige(n) Fassung(en) der Norm(en) angewendet?
+
+Maßstab für sämtliche Kriterien ist allein die Referenzantwort.
+
+Gib ausschließlich JSON im folgenden Format zurück:
+
+{
+  "outcome_correctness": {
+    "score": 0.0-1.0,
+    "justification": "Kurze Begründung (1–2 Sätze), ob und warum das rechtliche Ergebnis im Vergleich zur Referenzantwort korrekt bzw. abweichend ist."
+  },
+  "legal_reasoning_correctness": {
+    "score": 0.0-1.0,
+    "justification": "Kurze Begründung (1–2 Sätze), ob die juristische Herleitung/Subsumtion im Vergleich zur Referenzantwort korrekt ist."
+  },
+  "legal_basis_correctness": {
+    "score": 0.0-1.0,
+    "justification": "Kurze Begründung (1–2 Sätze), ob die inhaltlich einschlägigen Normen (Gesetz/Paragraph) mit der Referenz übereinstimmen."
+  },
+  "version_application_correctness": {
+    "score": 0.0-1.0,
+    "justification": "Kurze Begründung (1–2 Sätze), ob die zeitlich richtige Normfassung (a.F./n.F. bzw. Geltungszeitraum) mit der Referenz übereinstimmt."
+  }
+}
+
+Regeln:
+- Jeder "score"-Wert kann kontinuierlich im Bereich von einschließlich 0.0 bis einschließlich 1.0 liegen. Verwende maximal zwei Dezimalstellen. Nutze die Skala konsistent: 1.0 = vollständig übereinstimmend mit Gold; 0.0 = vollständig abweichend; Zwischenwerte bei teilweiser Übereinstimmung.
+- Bewerte ausschließlich anhand der Referenzantwort (Gold). Externes Wissen, eigene Rechtsauffassung oder eigene Recherche dürfen nicht einfließen.
+- Bewerte ausschließlich fachrechtlich-inhaltlich. Stil, Ton, Höflichkeit, Länge, Struktur oder Sprache der Antwort sind irrelevant.
+- Wenn die Kandidatenantwort zusätzliche Aussagen enthält, die Gold nicht stützen oder die Gold widersprechen, ist das als Abweichung zu werten (typisch: Abzug auf reasoning und/oder legal_basis).
+- Bewerte 'legal_basis_correctness' danach, ob die einschlägigen Normen (Gesetz + Paragraph/Absatz) mit Gold übereinstimmen. Falsche oder fehlende Normen führen ebenso wie ungenaue Zitate zu Abzügen.
+- Bewerte 'version_application_correctness' danach, ob die zeitlich richtige Fassung der jeweiligen Norm angewandt wird (a.F./n.F. bzw. Geltungszeitraum). Nur wenn Gold eine Fassung verlangt und der Kandidat die falsche Fassung nutzt, ist dies negativ zu werten.
+- Bewerte 'legal_reasoning_correctness' danach, ob die Herleitung/Subsumtion inhaltlich dem Gold folgt. Ein korrektes Ergebnis mit falscher Begründung führt zu Abzügen (outcome kann hoch bleiben, reasoning muss sinken).
+- Die 'justification' pro Kriterium darf ausschließlich den Vergleich Kandidat vs. Gold begründen. Führe keine neuen rechtlichen Argumente über Gold hinaus ein.
+- Keine Zusatztexte außerhalb des JSON.
