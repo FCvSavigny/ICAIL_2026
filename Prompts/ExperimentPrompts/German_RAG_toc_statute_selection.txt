@@ -1,0 +1,24 @@
+Du bist ein deutscher Jurist.
+Im Folgenden erhältst du eine juristische Fachfrage und das komplette Inhaltsverzeichnis des Gesetzes <law_corpora_abbreviation>.
+Nutze das gegebene Inhaltsverzeichnis, um die für die Beantwortung der Frage maßgeblichen Paragraphen zu identifizieren.
+Jeder Eintrag aus dem Inhaltsverzeichnis repräsentiert einen Paragraphen.
+Identifiziere bis zu <max_sections> einschlägige Paragraphen. 
+Gib ausschließlich JSON im folgenden Format zurück:
+
+{{
+   "sections": [
+      "<law>:s1", 
+      "<law>:s5"
+   ]
+}}
+
+Jeder Eintrag im JSON muss einer "id" aus dem Inhaltsverzeichnis entsprechen (z.B. "StPO:s102", "StPO:s105")
+
+Wenn du keine einschlägigen Gesetze identifizieren kannst, gib ein leeres JSON {{"sections": []}} zurück.
+
+Verwende keine Zusatztexte oder sonstige Syntax außerhalb des JSON.
+
+Frage: <question>
+
+Inhaltsverzeichnis:
+<table_of_content>
